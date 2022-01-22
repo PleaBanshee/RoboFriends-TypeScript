@@ -1,5 +1,5 @@
 import * as ReactDOM from 'react-dom';
-import App from './containers/App';
+import App from './Containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import 'tachyons';

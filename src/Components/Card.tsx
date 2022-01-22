@@ -1,9 +1,16 @@
-import React from 'react'; // must import react when working with JSX
+import * as React from 'react';
 
-const Card = ({ id,name,email }) => { // pass props from Card object in index.js to function. The props have been destructured
+interface CardStatelessProps {
+    name: string,
+    email: string,
+    id: number
+}
+
+// indicates that the Card component explicitly returns a type, as well as providing typechecking and autocomplete for static properties 
+const Card: React.FunctionComponent<CardStatelessProps> = ({ name, email, id }) => {
     return (
         <div className="bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5 tc">
-            <img src={`https://robohash.org/${id}?200×200`} alt="Robot.png" /> {/*add ?lenght×width after image url to specify size of image */}
+            <img src={`https://robohash.org/${id}?200×200`} alt="Robot.png" />
             <div>
                 <h2>{name}</h2>
                 <p>{email}</p>
