@@ -1,17 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
+import App from './containers/App';
+import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import 'tachyons';
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <App />,
+  // This syntax is called a type assertion, sometimes also called a cast.
+  // This is a useful way of telling TypeScript what the real type of an
+  // expression is when you know better than the type checker.
+  document.getElementById('root') as HTMLElement
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+registerServiceWorker();
