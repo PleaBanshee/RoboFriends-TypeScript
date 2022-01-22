@@ -1,5 +1,5 @@
 type Props = {
-    children?: React.ReactNode // optional, 
+    children?: React.ReactNode // optional, updates nodes on DOM
 }
 
 const Scroll = (props: Props) => {
