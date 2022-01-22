@@ -1,15 +1,30 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import CardList from '../Components/CardList.js';
 import SearchBox from '../Components/SearchBox.js';
 import Scroll from '../Components/Scroll.js';
 import ErrorBoundary from '../Components/ErrorBoundary.js';
 import './App.css'
 
-//  The State of a component is an object that holds some information that may change over the lifetime of the component.
+// Interface that contains types the Robot object contains
+export interface IRobot {
+    name: string;
+    id: number;
+    email: string;
+}
+  
+interface IAppProps {
 
-class App extends Component {
-    constructor() {
-        super();
+}
+
+// Interface that contains the keys of the app's state
+interface IAppState {
+    robots: Array<IRobot>;
+    searchField: string;
+}
+
+class App extends React.Component<IAppProps,IAppState> {
+    constructor(props: IAppProps) {
+        super(props);
         this.state = {
             robots: [],
             searchField: ''
@@ -18,15 +33,16 @@ class App extends Component {
 
     // Invokes when constructor() and render() are done running. Renders again after componentDidMount()
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users') // fetch resource accross servers (JSON objects)
-        .then(response => response.json())  // once repsonse is returned, convert it to json
-        .then(users => this.setState({ robots: users})); // once response have been converted to json, set the state of the component
+        fetch('https://jsonplaceholder.typicode.com/users') 
+        .then(response => response.json())
+        .then(users => this.setState({ robots: users}));
     }
 
     // Search method
-    onSearchChange = (event) => { // NB! Use arrow functions when a method is not part of React
-        // event.target.value: returns value typed in search box (component)
-        this.setState({searchField: event.target.value}); // always invoke this when you want to change state
+    // SyntheticEvent: cross-browser wrapper around the browser’s native event
+    // HTMLInputElement:  provides special properties and methods for manipulating the options, layout, and presentation of <input> elements.
+    onSearchChange = (event: React.SyntheticEvent<HTMLInputElement>): void => {
+        this.setState({ searchField: event.currentTarget.value })
     }
 
     render() {
@@ -46,7 +62,6 @@ class App extends Component {
                 </ErrorBoundary>
             </Scroll>
         </div>) :
-        // remember to always return one component
         <div className="tc">
             <h1 className="mb3 f1">Robofriends</h1>
             <SearchBox searchChange={this.onSearchChange} />
