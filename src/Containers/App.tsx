@@ -1,8 +1,8 @@
 import * as React from 'react';
-import CardList from '../Components/CardList.js';
-import SearchBox from '../Components/SearchBox.js';
-import Scroll from '../Components/Scroll.js';
-import ErrorBoundary from '../Components/ErrorBoundary.js';
+import CardList from '../Components/CardList';
+import SearchBox from '../Components/SearchBox';
+import Scroll from '../Components/Scroll';
+import ErrorBoundary from '../Components/ErrorBoundary';
 import './App.css'
 
 // Interface that contains types the Robot object contains
