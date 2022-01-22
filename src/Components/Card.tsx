@@ -6,7 +6,8 @@ interface CardStatelessProps {
     id: number
 }
 
-// indicates that the Card component explicitly returns a type, as well as providing typechecking and autocomplete for static properties 
+// FunctionComponent indicates that the Card component explicitly returns a type, 
+// as well as providing typechecking and autocompletion for static properties 
 const Card: React.FunctionComponent<CardStatelessProps> = ({ name, email, id }) => {
     return (
         <div className="bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5 tc">

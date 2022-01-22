@@ -5,6 +5,11 @@ import Scroll from '../Components/Scroll';
 import ErrorBoundary from '../Components/ErrorBoundary';
 import './App.css'
 
+/*  
+    Interfaces is a structure that defines the contract in your application. It defines the syntax for classes to follow.
+    Classes that are derived from an interface must follow the structure provided by their interface.
+*/
+
 // Interface that contains types the Robot object contains
 export interface IRobot {
     name: string;
@@ -32,7 +37,7 @@ class App extends React.Component<IAppProps,IAppState> {
     }
 
     // Invokes when constructor() and render() are done running. Renders again after componentDidMount()
-    componentDidMount() {
+    componentDidMount(): void {
         fetch('https://jsonplaceholder.typicode.com/users') 
         .then(response => response.json())
         .then(users => this.setState({ robots: users}));
@@ -45,7 +50,8 @@ class App extends React.Component<IAppProps,IAppState> {
         this.setState({ searchField: event.currentTarget.value })
     }
 
-    render() {
+    // render returns a JSX element
+    render(): JSX.Element {
         const { robots, searchField } = this.state;
         const filterRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchField.toLowerCase()); // check if search value exists in robots array. Works for upper and lowercase searches
@@ -56,9 +62,9 @@ class App extends React.Component<IAppProps,IAppState> {
         (<div className="tc">
             <h1 className="tc f1">ROBOT DOESN'T EXIST...</h1>
             <SearchBox searchChange={this.onSearchChange} />
-            <Scroll> {/* CardList is a child of Scroll */}
-                <ErrorBoundary> {/* if anything in CardList fails, an error will be displayed */}
-                    <CardList robots={filterRobots}/> {/* state can be passed down as props to children */}
+            <Scroll>
+                <ErrorBoundary> 
+                    <CardList robots={filterRobots}/> 
                 </ErrorBoundary>
             </Scroll>
         </div>) :

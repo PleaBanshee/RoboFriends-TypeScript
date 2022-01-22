@@ -1,3 +1,4 @@
+// type is similar to an interface
 type Props = {
     children?: React.ReactNode // optional, updates nodes on DOM
 }

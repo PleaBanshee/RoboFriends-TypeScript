@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// SyntheticEvent indicates React's imlementation of events, not the native DOM
 interface ISearchBoxProps {
     searchChange(event: React.SyntheticEvent<HTMLInputElement>): void;
 }
